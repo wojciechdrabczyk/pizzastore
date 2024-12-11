@@ -146,7 +146,7 @@ export default function Contact() {
                                 className="mt-1 block w-full"
                                 onChange={(e) => setData('subject', e.target.value)}
                                 placeholder={"Type your subject here..."}
-                                require
+                                required
                             />
 
                             <InputError message={errors.subject} className="mt-2"/>
