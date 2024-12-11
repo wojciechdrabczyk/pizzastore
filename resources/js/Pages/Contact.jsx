@@ -1,29 +1,49 @@
-import {Head, Link, useForm} from "@inertiajs/react";
+import {Head, Link, useForm, usePage} from "@inertiajs/react";
 import InputLabel from "@/Components/InputLabel.jsx";
 import TextInput from "@/Components/TextInput.jsx";
 import InputError from "@/Components/InputError.jsx";
 
-export default function Contact(auth) {
-    const {errors} = useForm({});
+export default function Contact() {
+    const {auth} = usePage().props;
+    const {data, setData, post, processing, errors} = useForm({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+    const navLinkClasses = "rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white";
+    const OnSubmit = (e) => {
+        e.preventDefault();
+        post(route('contact.submit'));
+    };
     return (
-        <div className="bg-black h-screen">
+        <div className="bg-black">
             <Head title={"Contact"}/>
-            <nav className="-mx-3 flex flex-1 justify-end bg-black">
+            <nav className="flex flex-1 justify-end bg-black space-x-4 p-3">
                 <Link href={route('home')}
-                      className={"rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"}
-
+                      className={navLinkClasses}
                 >
                     Home
                 </Link>
-                <Link href={route('contact')}
-                      className={"rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"}
+                <Link href={route('menu')}
+                      className={navLinkClasses}
                 >
-                    Contact
+                    Menu
+                </Link>
+                <Link href={route('contact')}
+                      className={navLinkClasses}>
+                    >
+                    Contact Us
+                </Link>
+                <Link href={route('about')}
+                      className={navLinkClasses}>
+                    >
+                    About Us
                 </Link>
                 {auth.user ? (
                     <Link
                         href={route('dashboard')}
-                        className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                        className={navLinkClasses}
                     >
                         Dashboard
                     </Link>
@@ -85,8 +105,8 @@ export default function Contact(auth) {
                         </div>
                     </div>
                 </div>
-                <div className={""}>
-                    <form onSubmit={"TODO"}>
+                <div className={"w-64"}>
+                    <form onSubmit={OnSubmit}>
                         <div>
                             <InputLabel htmlFor="name" value="Name"/>
 
@@ -95,7 +115,6 @@ export default function Contact(auth) {
                                 name="name"
                                 className="mt-1 block w-full"
                                 autoComplete="name"
-                                isFocused={true}
                                 onChange={(e) => setData('name', e.target.value)}
                                 placeholder={"Type your name here..."}
                                 required
@@ -111,7 +130,6 @@ export default function Contact(auth) {
                                 type="email"
                                 name="email"
                                 className="mt-1 block w-full"
-                                autoComplete="username"
                                 onChange={(e) => setData('email', e.target.value)}
                                 placeholder={"Type your email here..."}
                                 required
@@ -124,13 +142,11 @@ export default function Contact(auth) {
 
                             <TextInput
                                 id="subject"
-                                type="subject"
                                 name="subject"
                                 className="mt-1 block w-full"
-                                autoComplete="subjet"
                                 onChange={(e) => setData('subject', e.target.value)}
                                 placeholder={"Type your subject here..."}
-                                required
+                                require
                             />
 
                             <InputError message={errors.subject} className="mt-2"/>
@@ -138,16 +154,14 @@ export default function Contact(auth) {
                         <div className="mt-4">
                             <InputLabel htmlFor="message" value="Message"/>
 
-                            <TextInput
+                            <textarea
                                 id="message"
-                                type="message"
                                 name="message"
-                                className="mt-1 block w-full"
-                                autoComplete="username"
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                 onChange={(e) => setData('message', e.target.value)}
                                 placeholder={"Type your message here..."}
                                 required
-                            />
+                            ></textarea>
 
                             <InputError message={errors.message} className="mt-2"/>
                         </div>
