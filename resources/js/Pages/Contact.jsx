@@ -2,48 +2,56 @@ import {Head, Link, useForm, usePage} from "@inertiajs/react";
 import InputLabel from "@/Components/InputLabel.jsx";
 import TextInput from "@/Components/TextInput.jsx";
 import InputError from "@/Components/InputError.jsx";
+import PrimaryButton from "@/Components/PrimaryButton.jsx";
+import {Transition} from "@headlessui/react";
 
 export default function Contact() {
     const {auth} = usePage().props;
-    const {data, setData, post, processing, errors} = useForm({
+    const {data, setData, post, processing, errors, recentlySuccessful} = useForm({
         name: '',
         email: '',
         subject: '',
         message: ''
     });
-    const navLinkClasses = "rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white";
-    const OnSubmit = (e) => {
+    const getNavLinkClasses = (routeName) =>
+        `rounded-md px-3 py-2 ring-1 ring-transparent transition hover:text-[#FF5733] focus:text-[#FF5733]
+     focus:outline-none focus-visible:ring-[#FF2D20]
+     ${route().current(routeName) ? 'text-[#FF5733] font-bold' : 'text-white'}`;
+
+
+
+    const onSubmit = (e) => {
         e.preventDefault();
         post(route('contact.submit'));
     };
     return (
-        <div className="bg-black">
+        <div className="bg-black min-h-screen">
             <Head title={"Contact"}/>
-            <nav className="flex flex-1 justify-end bg-black space-x-4 p-3">
+            <nav className="flex flex-1 justify-end bg-black space-x-4 p-1">
                 <Link href={route('home')}
-                      className={navLinkClasses}
+                      className={getNavLinkClasses('home')}
                 >
                     Home
                 </Link>
                 <Link href={route('menu')}
-                      className={navLinkClasses}
+                      className={getNavLinkClasses('menu')}
                 >
                     Menu
                 </Link>
                 <Link href={route('contact')}
-                      className={navLinkClasses}>
-                    >
+                      className={getNavLinkClasses('contact')}
+                >
                     Contact Us
                 </Link>
                 <Link href={route('about')}
-                      className={navLinkClasses}>
-                    >
+                      className={getNavLinkClasses('about')}
+                >
                     About Us
                 </Link>
                 {auth.user ? (
                     <Link
                         href={route('dashboard')}
-                        className={navLinkClasses}
+                        className={getNavLinkClasses('dashboard')}
                     >
                         Dashboard
                     </Link>
@@ -64,7 +72,7 @@ export default function Contact() {
                     </>
                 )}
             </nav>
-            <div className="flex items-center justify-center flex-col h-screen gap-10">
+            <div className="flex items-center justify-center flex-col mt-40 gap-10">
                 <div className="flex justify-center items-center text-center text-white">
                     <h1 className="font-bold text-xl leading-tight">
                         Get in touch with us!
@@ -106,7 +114,7 @@ export default function Contact() {
                     </div>
                 </div>
                 <div className={"w-64"}>
-                    <form onSubmit={OnSubmit}>
+                    <form onSubmit={onSubmit}>
                         <div>
                             <InputLabel htmlFor="name" value="Name"/>
 
@@ -157,12 +165,27 @@ export default function Contact() {
                             <textarea
                                 id="message"
                                 name="message"
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                className="mt-1 block w-full resize rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                 onChange={(e) => setData('message', e.target.value)}
                                 placeholder={"Type your message here..."}
                                 required
                             ></textarea>
 
+                            <div className="mt-4 flex justify-end">
+                                <PrimaryButton disabled={processing} className={"bg-orange-500"} >Send</PrimaryButton>
+
+                                <Transition
+                                    show={recentlySuccessful}
+                                    enter="transition ease-in-out"
+                                    enterFrom="opacity-0"
+                                    leave="transition ease-in-out"
+                                    leaveTo="opacity-0"
+                                >
+                                    <p className="text-sm text-gray-600">
+                                        Saved
+                                    </p>
+                                </Transition>
+                            </div>
                             <InputError message={errors.message} className="mt-2"/>
                         </div>
                     </form>
