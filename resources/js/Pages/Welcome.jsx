@@ -1,4 +1,5 @@
 import {Head, Link} from '@inertiajs/react';
+import NavBar from "@/Components/NavBar.jsx";
 
 export default function Welcome({auth}) {
     const handleImageError = () => {
@@ -20,49 +21,7 @@ export default function Welcome({auth}) {
     return (
         <>
             <Head title="Welcome"/>
-            <nav className="flex flex-1 justify-end bg-black space-x-4 p-1">
-                <Link href={route('home')}
-                      className={getNavLinkClasses('home')}>
-                    Home
-                </Link>
-                <Link href={route('menu')}
-                      className={getNavLinkClasses('menu')}>
-                    Menu
-                </Link>
-                <Link href={route('contact')}
-                      className={getNavLinkClasses('contact')}
-                >
-                    Contact Us
-                </Link>
-                <Link href={route('about')}
-                      className={"rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"}
-                >
-                    About Us
-                </Link>
-                {auth.user ? (
-                    <Link
-                        href={route('dashboard')}
-                        className={getNavLinkClasses('dashboard')}
-                    >
-                        Dashboard
-                    </Link>
-                ) : (
-                    <>
-                        <Link
-                            href={route('login')}
-                            className={getNavLinkClasses('login')}
-                        >
-                            Log in
-                        </Link>
-                        <Link
-                            href={route('register')}
-                            className={getNavLinkClasses('register')}
-                        >
-                            Register
-                        </Link>
-                    </>
-                )}
-            </nav>
+            <NavBar/>
         </>
     );
 }
