@@ -4,6 +4,7 @@ import TextInput from "@/Components/TextInput.jsx";
 import InputError from "@/Components/InputError.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import {Transition} from "@headlessui/react";
+import NavBar from "@/Components/NavBar.jsx";
 
 export default function Contact() {
     const {auth} = usePage().props;
@@ -27,51 +28,7 @@ export default function Contact() {
     return (
         <div className="bg-black min-h-screen">
             <Head title={"Contact"}/>
-            <nav className="flex flex-1 justify-end bg-black space-x-4 p-1">
-                <Link href={route('home')}
-                      className={getNavLinkClasses('home')}
-                >
-                    Home
-                </Link>
-                <Link href={route('menu')}
-                      className={getNavLinkClasses('menu')}
-                >
-                    Menu
-                </Link>
-                <Link href={route('contact')}
-                      className={getNavLinkClasses('contact')}
-                >
-                    Contact Us
-                </Link>
-                <Link href={route('about')}
-                      className={getNavLinkClasses('about')}
-                >
-                    About Us
-                </Link>
-                {auth.user ? (
-                    <Link
-                        href={route('dashboard')}
-                        className={getNavLinkClasses('dashboard')}
-                    >
-                        Dashboard
-                    </Link>
-                ) : (
-                    <>
-                        <Link
-                            href={route('login')}
-                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                        >
-                            Log in
-                        </Link>
-                        <Link
-                            href={route('register')}
-                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                        >
-                            Register
-                        </Link>
-                    </>
-                )}
-            </nav>
+            <NavBar/>
             <div className="flex items-center justify-center flex-col mt-40 gap-10">
                 <div className="flex justify-center items-center text-center text-white">
                     <h1 className="font-bold text-xl leading-tight">
@@ -171,8 +128,8 @@ export default function Contact() {
                                 required
                             ></textarea>
 
-                            <div className="mt-4 flex justify-end">
-                                <PrimaryButton disabled={processing} className={"bg-orange-500"} >Send</PrimaryButton>
+                            <div className="mt-4 flex justify-start">
+                                <PrimaryButton disabled={processing} className={"bg-orange-600 hover:bg-orange-500 focus:bg-orange-500"}>Send</PrimaryButton>
 
                                 <Transition
                                     show={recentlySuccessful}
@@ -181,7 +138,7 @@ export default function Contact() {
                                     leave="transition ease-in-out"
                                     leaveTo="opacity-0"
                                 >
-                                    <p className="text-sm text-gray-600">
+                                    <p className="text-sm text-orange-300">
                                         Saved
                                     </p>
                                 </Transition>
