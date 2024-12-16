@@ -26,18 +26,18 @@ export default function Contact() {
         post(route('contact.submit'));
     };
     return (
-        <div className="bg-black min-h-screen">
+        <div className="bg-gray-100 min-h-screen">
             <Head title={"Contact"}/>
             <NavBar/>
             <div className="flex items-center justify-center flex-col mt-40 gap-10">
-                <div className="flex justify-center items-center text-center text-white">
+                <div className="flex justify-center items-center text-center text-[#FF5733]">
                     <h1 className="font-bold text-xl leading-tight">
                         Get in touch with us!
                     </h1>
                 </div>
 
                 <div className="flex flex-row items-start justify-center space-x-4">
-                    <div className="text-white w-44 text-center">
+                    <div className="text-gray-500 w-44 text-center">
                         <div>
                             <p>
                                 <span>
@@ -48,7 +48,7 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    <div className="text-white">
+                    <div className="text-gray-500">
                         <div>
                             <p>
                                 <span>
@@ -59,7 +59,7 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    <div className="text-white">
+                    <div className="text-gray-500">
                         <div>
                             <p>
                                 <span>
@@ -129,7 +129,7 @@ export default function Contact() {
                             ></textarea>
 
                             <div className="mt-4 flex justify-start">
-                                <PrimaryButton disabled={processing} className={"bg-orange-600 hover:bg-orange-500 focus:bg-orange-500"}>Send</PrimaryButton>
+                                <PrimaryButton disabled={processing} className={"bg-[#FF5733] hover:bg-orange-500 focus:bg-orange-500"}>Send</PrimaryButton>
 
                                 <Transition
                                     show={recentlySuccessful}
