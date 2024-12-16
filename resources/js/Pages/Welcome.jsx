@@ -13,15 +13,18 @@ export default function Welcome({auth}) {
         document.getElementById('background')?.classList.add('!hidden');
     };
 
-    const getNavLinkClasses = (routeName) =>
-        `rounded-md px-3 py-2 ring-1 ring-transparent transition hover:text-[#FF5733] focus:text-[#FF5733]
-     focus:outline-none focus-visible:ring-[#FF2D20]
-     ${route().current(routeName) ? 'text-[#FF5733] font-bold' : 'text-white'}`;
 
     return (
         <>
-            <Head title="Welcome"/>
-            <NavBar/>
+            <div className={"bg-black min-h-screen"}>
+                <Head title="Welcome"/>
+                <div>
+                    <NavBar/>
+                </div>
+                <div className={"text-white p-6"}>
+                    Welcome to PizzaMia! Explore our menu and offers.
+                </div>
+            </div>
         </>
     );
 }
