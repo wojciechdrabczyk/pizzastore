@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FoodController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,6 +15,8 @@ Route::inertia('/dashboard', 'Dashboard')->middleware(['auth', 'verified'])->nam
 Route::inertia('/contact', 'Contact')->name('contact');
 Route::inertia('/about', 'About')->name('about');
 Route::inertia('/menu', 'Menu')->name('menu');
+
+Route::inertia('/food', 'Food/Index')->name('food');
 
 // Authenticated Profile Routes
 Route::middleware('auth')->group(function () {
