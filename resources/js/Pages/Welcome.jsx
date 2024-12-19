@@ -1,5 +1,5 @@
 import {Head, Link} from '@inertiajs/react';
-import NavBar from "@/Components/NavBar.jsx";
+import NavBar from "@/Components/Shared/NavBar.jsx";
 
 export default function Welcome({auth}) {
     const handleImageError = () => {
@@ -16,12 +16,12 @@ export default function Welcome({auth}) {
 
     return (
         <>
-            <div className={"bg-black min-h-screen"}>
+            <div className={"bg-gray-100 min-h-screen"}>
                 <Head title="Welcome"/>
                 <div>
                     <NavBar/>
                 </div>
-                <div className={"text-white p-6"}>
+                <div className={"text-gray-600 p-6"}>
                     Welcome to PizzaMia! Explore our menu and offers.
                 </div>
             </div>

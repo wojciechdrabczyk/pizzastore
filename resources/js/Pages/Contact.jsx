@@ -4,7 +4,7 @@ import TextInput from "@/Components/TextInput.jsx";
 import InputError from "@/Components/InputError.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import {Transition} from "@headlessui/react";
-import NavBar from "@/Components/NavBar.jsx";
+import NavBar from "@/Components/Shared/NavBar.jsx";
 
 export default function Contact() {
     const {auth} = usePage().props;

@@ -1,5 +1,5 @@
 import {Head, Link, useForm, usePage} from "@inertiajs/react";
-import NavBar from "@/Components/NavBar.jsx";
+import NavBar from "@/Components/Shared/NavBar.jsx";
 
 export default function Contact() {
     const {data, setData, post, processing, errors, recentlySuccessful} = useForm({

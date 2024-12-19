@@ -1,6 +1,4 @@
-import React from "react";
-
-const FoodList = ({ items }) => {
+const List = ({items}) => {
     if (!items || items.length === 0) {
         return <p>No food items found</p>;
     }
@@ -19,4 +17,4 @@ const FoodList = ({ items }) => {
     );
 };
 
-export default FoodList;
+export default List;

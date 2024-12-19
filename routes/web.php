@@ -14,7 +14,7 @@ Route::inertia('/', 'Welcome', [
 Route::inertia('/dashboard', 'Dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 Route::inertia('/contact', 'Contact')->name('contact');
 Route::inertia('/about', 'About')->name('about');
-Route::inertia('/menu', 'Menu')->name('menu');
+Route::inertia('/menu', 'SiteMenu')->name('menu');
 
 Route::inertia('/food', 'Food/Index')->name('food');
 

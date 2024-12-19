@@ -1,8 +1,8 @@
 import React from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import FoodList from './FoodList';
+import List from './List.jsx';
 
-export default function FoodIndex({ foodItems, category }) {
+export default function Index({ foodItems, category }) {
     const handleCategoryChange = (newCategory) => {
         Inertia.get('/food', { category: newCategory });
     };
@@ -22,7 +22,7 @@ export default function FoodIndex({ foodItems, category }) {
                 ))}
             </div>
 
-            <FoodList items={foodItems} />
+            <List items={foodItems} />
         </div>
     );
 }

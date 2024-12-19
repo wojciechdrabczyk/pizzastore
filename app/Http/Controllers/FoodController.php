@@ -44,8 +44,10 @@ class FoodController extends Controller
         return inertia('Food/Index', [
             'foodItems' => $foodItems,
             'category' => $request->category ?? 'All',
+            'tags' => ['All', 'Pizza', 'Beverage', 'Side'],
         ]);
     }
+
     /**
      * Show the form for creating a new resource.
      */
