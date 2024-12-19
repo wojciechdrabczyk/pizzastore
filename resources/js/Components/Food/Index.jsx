@@ -9,7 +9,6 @@ export default function Index({ foodItems, category }) {
 
     return (
         <div>
-            <h1>Food Menu</h1>
             <div className="flex space-x-4 mb-5">
                 {['All', 'Pizza', 'Beverage', 'Side'].map((tag) => (
                     <button
