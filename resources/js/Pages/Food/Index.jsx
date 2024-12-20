@@ -20,7 +20,6 @@ export default function Index({ foodItems, category }) {
                     </button>
                 ))}
             </div>
-
             <List items={foodItems} />
         </div>
     );

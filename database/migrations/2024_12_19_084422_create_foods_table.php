@@ -16,9 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('category');
             $table->text('ingredients')->nullable();
-            $table->float('price');
+            $table->float('price', 8, 2);
             $table->timestamps();
         });
+
+
+
     }
 
     /**

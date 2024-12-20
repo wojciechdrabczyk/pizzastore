@@ -16,16 +16,13 @@ class FoodController extends Controller
     public function index(Request $request)
     {
         $foodItems = Food::all();
-
-        if ($request->has('category') && $request->category !== 'All') {
-            $foodItems = $foodItems->where('category', $request->category);
-        }
-
-        return inertia('Food/Index', [
+        return Inertia::render('Food/SiteMenu', [
             'foodItems' => $foodItems,
             'category' => $request->category ?? 'All',
             'tags' => ['All', 'Pizza', 'Beverage', 'Side'],
         ]);
+
+
     }
 
     /**
