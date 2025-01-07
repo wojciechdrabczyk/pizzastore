@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('category');
-            $table->text('ingredients')->nullable();
-            $table->float('price', 8, 2);
+            $table->json('size')->nullable();
+            $table->json('ingredients')->nullable();
+            $table->json('price')->nullable();
             $table->timestamps();
         });
 
