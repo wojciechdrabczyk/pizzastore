@@ -1,8 +1,8 @@
 import React from "react";
-import Card from "./Card.jsx"; // Adjust the import path if necessary
+import Card from "./Card.jsx";
 
 const List = ({ items }) => {
-    console.log(items);
+    // console.log(items);
     if (!items || items.length === 0) {
         return <p>No food items found</p>;
     }

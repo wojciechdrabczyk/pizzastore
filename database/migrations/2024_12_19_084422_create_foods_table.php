@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('category');
             $table->json('size')->nullable();
             $table->json('ingredients')->nullable();
+            $table->json('description')->nullable();
             $table->json('price')->nullable();
             $table->timestamps();
         });
