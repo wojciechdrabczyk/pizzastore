@@ -1,5 +1,13 @@
+import React, {useState} from 'react';
+
 const Card = ({food}) => {
-    console.log(food);
+
+    const [selectedSizeIndex, setSelectedSizeIndex] = React.useState(null);
+
+    const handleSizeChange = (event) => {
+        setSelectedSizeIndex(event.target.value);
+    };
+
     return (
         <div className="border border-gray-200 rounded-md p-4 flex items-center space-x-4">
             <img
@@ -11,20 +19,31 @@ const Card = ({food}) => {
                 <h4 className="font-semibold text-gray-600">{food.name}</h4>
                 <p className="text-sm text-gray-500">Category: {food.category}</p>
 
-                {food.size && Array.isArray(food.size) && food.size.length > 0 ? (
-                    <p className="text-sm text-gray-500">
-                        Size: {food.size.join(', ')}
-                    </p>
-                ) : (
-                    food.size && <p className="text-sm text-gray-500">Size: {food.size}</p>
+                {Array.isArray(food.size) && food.size.length > 0 && (
+                    <div className="text-sm text-gray-500">
+                        <label htmlFor="size-select" className="block mb-2 font-medium">
+                            Choose a size:
+                        </label>
+                        <select
+                            id="size-select"
+                            className="block w-full p-2 border border-gray-300 rounded-md"
+                            onChange={handleSizeChange}
+                        >
+                            <option key={index} value={size}>
+                                Select a size
+                            </option>
+                            {food.size.map((size, index) => (
+                                <option key={index} value={size}>
+                                    {size}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 )}
-
-                {food.ingredients && Array.isArray(food.ingredients) && food.ingredients.length > 0 ? (
+                {Array.isArray(food.ingredients) && food.ingredients.length > 0 && (
                     <p className="text-sm text-gray-500">
                         Ingredients: {food.ingredients.join(', ')}
                     </p>
-                ) : (
-                    food.ingredients && <p className={"text-sm text-gray-500"}>Ingredients: {food.ingredients}</p>
                 )}
 
                 {food.description && Array.isArray(food.description) && food.description.length > 0 ? (
@@ -35,21 +54,16 @@ const Card = ({food}) => {
                     food.description && <p className={"text-sm text-gray-500"}>Info: {food.description}</p>
                 )}
 
-                {food.price && Array.isArray(food.price) && food.price.length > 0 ? (
-                    <div>
-                        <p className="text-sm text-gray-500">Prices:</p>
-                        <ul className="list-disc pl-5">
-                            {food.price.map((price, index) => (
-                                <li key={index} className="text-sm text-gray-500">
-                                    ${price}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                {selectedSizeIndex !== null && selectedSizeIndex !== "" ? (
+                    <p className={"text-sm text-gray-500 mt-4"}>
+                        Price: ${food.price[selectedSizeIndex].toFixed(2)}
+                    </p>
+
                 ) : (
-                    food.price && (
-                        <p className="text-sm text-gray-500">Price: ${food.price}</p>
-                    )
+                    <p className={"text-sm text-gray-500 mt-4"}>
+                        Please select a size to see the price.
+                    </p>
+
                 )}
             </div>
         </div>
