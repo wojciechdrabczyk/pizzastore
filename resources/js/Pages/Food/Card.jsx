@@ -20,7 +20,7 @@ const Card = ({food}) => {
                 <p className="text-sm text-gray-500">Category: {food.category}</p>
 
                 {Array.isArray(food.size) && food.size.length > 0 && (
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-gray-500 mt-4">
                         <label htmlFor="size-select" className="block mb-2 font-medium">
                             Choose a size:
                         </label>
@@ -29,11 +29,11 @@ const Card = ({food}) => {
                             className="block w-full p-2 border border-gray-300 rounded-md"
                             onChange={handleSizeChange}
                         >
-                            <option key={index} value={size}>
+                            <option value="" disabled selected>
                                 Select a size
                             </option>
                             {food.size.map((size, index) => (
-                                <option key={index} value={size}>
+                                <option key={index} value={index}>
                                     {size}
                                 </option>
                             ))}
