@@ -63,7 +63,7 @@ class FoodSeeder extends Seeder
             'size' => ['Small', 'Medium'],
             'ingredients' => ['Bread', 'Garlic', 'Butter'],
             'description' => ['Warm and crispy bread topped with garlic butter, perfect as a side dish.'],
-            'price' => [3.99],
+            'price' => [1.99, 2.99],
         ]);
 
         Food::create([
@@ -72,7 +72,7 @@ class FoodSeeder extends Seeder
             'size' => ['Small', 'Medium'],
             'ingredients' => ['Vinegar', 'Salt', 'Spices', 'Seasonings'],
             'description' => ['A classic tomato-based condiment to complement your favorite dishes.'],
-            'price' => [0.99],
+            'price' => [0.99, 1.99],
         ]);
 
         Food::create([

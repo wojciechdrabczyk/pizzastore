@@ -9,11 +9,11 @@ const Card = ({food}) => {
     };
 
     return (
-        <div className="border border-gray-200 rounded-md p-4 flex items-center space-x-4">
+        <div className="border border-gray-200 rounded-md p-4 flex items-center space-x-4 bg-white">
             <img
-                src={food.image || "https://via.placeholder.com/64"}
+                src={food.image || "https://dummyimage.com/64x64/000/fff"}
                 alt={food.name}
-                className="w-16 h-16 object-cover rounded-full"
+                className="w-16 h-16 object-cover rounded-full self-start md:self-center"
             />
             <div>
                 <h4 className="font-semibold text-gray-600">{food.name}</h4>
@@ -21,12 +21,12 @@ const Card = ({food}) => {
 
                 {Array.isArray(food.size) && food.size.length > 0 && (
                     <div className="text-sm text-gray-500 mt-4">
-                        <label htmlFor="size-select" className="block mb-2 font-medium">
+                        <label htmlFor="size-select" className="block mb-2 font-bold text-ex">
                             Choose a size:
                         </label>
                         <select
                             id="size-select"
-                            className="block w-full p-2 border border-gray-300 rounded-md"
+                            className="block p-2 pr-8 border border-gray-300 rounded-full"
                             onChange={handleSizeChange}
                         >
                             <option value="" disabled selected>
@@ -54,16 +54,14 @@ const Card = ({food}) => {
                     food.description && <p className={"text-sm text-gray-500"}>Info: {food.description}</p>
                 )}
 
-                {selectedSizeIndex !== null && selectedSizeIndex !== "" ? (
+                {selectedSizeIndex !== null && selectedSizeIndex !== "" && Array.isArray(food.price) && selectedSizeIndex !== "" ? (
                     <p className={"text-sm text-gray-500 mt-4"}>
-                        Price: ${food.price[selectedSizeIndex].toFixed(2)}
+                        Price: ${food.price[selectedSizeIndex]}
                     </p>
-
                 ) : (
                     <p className={"text-sm text-gray-500 mt-4"}>
-                        Please select a size to see the price.
+                        Price: Not available
                     </p>
-
                 )}
             </div>
         </div>
