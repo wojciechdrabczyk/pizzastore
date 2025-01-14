@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function ShoppingCart({
-                                         className = "h-6 w-6", // Default Tailwind size
+                                         className = "h-6 w-6",
                                          width = "24",
                                          height = "24",
                                          fill = "none",

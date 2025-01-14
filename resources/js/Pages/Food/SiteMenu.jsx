@@ -46,6 +46,7 @@ export default function SiteMenu({foodItems = [], category = "All"}) {
                     </div>
 
                     <List items={filteredFoodItems}/>
+
                 </div>
             </div>
         </>
